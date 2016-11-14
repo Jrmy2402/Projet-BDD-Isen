@@ -1,0 +1,42 @@
+<md-card layout="column" layout-padding ng-cloak class="home" flex="40">
+  <br/>
+  <form name="loginForm">
+    <md-content class="md-no-momentum md-padding">
+      <div style="text-align: center;">
+        <h2 style="font-family: 'Ma Super Fonte Regular', cursive; font-weight: normal; text-shadow: 0 1px 1px #CCCDCD;">Se connecter</h2>
+
+      </div>
+
+      <div style="text-align: center;" ng-if="error">{{error}}</div>
+
+      <md-input-container class="md-icon-float md-block">
+        <!-- Use floating label instead of placeholder -->
+        <label>Login (mail)</label>
+        <md-icon class="material-icons" ng-class="{iconred: loginForm.email.$touched && !loginForm.email.$valid}">email</md-icon>
+        <!-- <md-icon md-svg-src="images/icons/ic_person_black_24px.svg" class="name"></md-icon> -->
+        <input ng-model="user.email" ng-required="true" type="email" name="email">
+
+        <div ng-messages="loginForm.email.$error" ng-if="loginForm.email.$touched && !loginForm.email.$valid">
+          <div ng-message="required">Requis.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-icon-float md-block">
+        <!-- Use floating label instead of placeholder -->
+        <label>Mot de passe</label>
+        <!-- <md-icon md-svg-src="images/icons/ic_vpn_key_black_24px.svg" class="name"></md-icon> -->
+        <md-icon class="material-icons" ng-class="{iconred: loginForm.password.$touched && !loginForm.password.$valid}">vpn_key</md-icon>
+        <input ng-model="user.password" type="password" name="password" required>
+        <div ng-messages="loginForm.password.$error" ng-if="loginForm.password.$touched && !loginForm.password.$valid">
+          <div ng-message="required">Requis.</div>
+        </div>
+      </md-input-container>
+      <section layout="row" layout-sm="column" layout-align="end start" layout-wrap>
+        <md-button class="md-primary" ng-click="go()" target="_blank">Créer un compte</md-button>
+        <md-button class="md-raised md-primary" ng-click="connection()" ng-disabled="!loginForm.$valid">Connexion</md-button>
+      </section>
+    </md-content>
+    <!-- <md-content> -->
+
+    <!-- </md-content> -->
+  </form>
+</md-card>

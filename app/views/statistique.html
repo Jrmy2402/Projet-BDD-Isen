@@ -1,0 +1,31 @@
+<md-dialog aria-label="List dialog" flex="80">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Statistique</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="Annuler" ng-click="cancel()">
+        <i class="material-icons">&#xE14C;</i>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content layout-padding flex>
+    <div layout="row" layout-align="center center" style="padding: 0px;">
+      <label flex class="textFiltre">Titre :</label>
+      <label flex class="textFiltre">Groupe :</label>
+      <label flex class="textFiltre">Moyenne :</label>
+      <label flex class="textFiltre">Nombre de likes :</label>
+    </div>
+    <div layout="row" layout-align="center center" style="padding: 0px;" ng-repeat="morceau in statistique.statistique | orderBy :'moyenne': true">
+      <label flex class="textFiltre" style="padding-bottom: 0px;">{{morceau.titre}}</label>
+      <label flex class="textFiltre" style="padding-bottom: 0px;">{{morceau.nom_groupe}}</label>
+      <label flex class="textFiltre" style="padding-bottom: 0px;">{{morceau.moyenne}}</label>
+      <label flex class="textFiltre" style="padding-bottom: 0px;">{{morceau.nb_likes}}</label>
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <span flex></span>
+    <md-button class="md-raised md-primary" style="margin-bottom:20px;" ng-click="cancel()">
+      Fermer
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

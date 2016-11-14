@@ -1,0 +1,142 @@
+<div layout="row" layout-align="space-around start" flex="100">
+  <md-card layout-padding ng-cloak class="home" flex="40" style="margin-bottom:25px">
+    <h4 style="padding-top: 15px; padding-bottom: 15px; text-align:center; color: #565a5c; font-size: 18px; font-weight: bold; font-family: Circular,'Helvetica Neue',Helvetica,Arial,sans-serif;">
+          Mes informations
+        </h4>
+    <md-divider></md-divider>
+    <div layout="row" layout-align="center center" style="padding: 0px;">
+      <label flex="40" class="textFiltre">Mail :</label>
+      <label flex="40" class="textFiltre">{{user.mail}}</label>
+    </div>
+    <div layout="row" layout-align="center center" style="padding: 0px;">
+      <label flex="40" class="textFiltre">Nom :</label>
+      <label flex="40" class="textFiltre">{{user.nom}}</label>
+    </div>
+    <div layout="row" layout-align="center center" style="padding: 0px;">
+      <label flex="40" class="textFiltre">Prénom :</label>
+      <label flex="40" class="textFiltre">{{user.prenom}}</label>
+    </div>
+    <div layout="row" layout-align="center center" style="padding: 0px;">
+      <label flex="40" class="textFiltre">Télépone :</label>
+      <label flex="40" class="textFiltre">{{user.tel}}</label>
+    </div>
+    <div layout="row" layout-align="center center" style="padding: 0px;">
+      <label flex="40" class="textFiltre">Adresse :</label>
+      <label flex="40" class="textFiltre">{{user.numero_rue}} {{user.rue}} {{user.ville}}</label>
+    </div>
+    <div layout="row" layout-align="center center" style="padding: 0px;">
+      <label flex="40" class="textFiltre">Sexe :</label>
+      <label flex="40" class="textFiltre">{{user.sexe}}</label>
+    </div>
+    <div layout="row" layout-align="center center" style="padding: 0px;">
+      <label flex="40" class="textFiltre">Date de naissance :</label>
+      <label flex="40" class="textFiltre">{{user.date_naissance | date : "longDate"}}</label>
+    </div>
+    <!-- <md-divider></md-divider> -->
+    <div layout="row" layout-align="center center" style="padding: 0px;">
+      <label flex="40" class="textFiltre">Statut :</label>
+      <label flex="40" class="textFiltre">{{user.statut}}</label>
+    </div>
+  </md-card>
+  <md-card layout-padding ng-cloak class="home" flex="50" style="margin-bottom:25px" ng-if="user.statut==='Musicien'">
+    <h4 style="padding-top: 15px; padding-bottom: 15px; text-align:center; color: #565a5c; font-size: 18px; font-weight: bold; font-family: Circular,'Helvetica Neue',Helvetica,Arial,sans-serif;">
+      Mes Groupe
+    </h4>
+    <md-divider></md-divider>
+    <div ng-if="!groupe.length>0" layout="row" layout-align="center center" style="padding: 0px;">
+      <label flex="40" class="textFiltre">Nom groupe :</label>
+      <label flex="40" class="textFiltre">Pas de groupe</label>
+    </div>
+    <div layout="column" style="padding: 0px;" ng-repeat="g in groupe track by $index" ng-init="groupeIndex = $index+1; afficher=false">
+      <div layout="row" layout-align="center center">
+        <label flex="40" class="textFiltre">Nom groupe {{groupeIndex}}:</label>
+        <label flex="40" class="textFiltre">{{g.nom_groupe}}</label>
+        <md-button class="md-icon-button" aria-label="More" ng-click="addMusique($event, g.nom_groupe)">
+          <i class="material-icons" style="color: #5C6062;">&#xE03B;</i>
+          <md-tooltip md-direction="left">
+            Ajouté une musique
+          </md-tooltip>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="More" ng-click="afficher=!afficher">
+          <i class="material-icons" style="color: #5C6062;" ng-if="!afficher">&#xE313;</i>
+          <i class="material-icons" style="color: #5C6062;" ng-if="afficher">&#xE5CE;</i>
+          <md-tooltip md-direction="left">
+            <div ng-if="!afficher">Voir les details</div>
+            <div ng-if="afficher">Cacher les details</div>
+          </md-tooltip>
+        </md-button>
+      </div>
+      <div layout="row" ng-if="afficher" layout-align="space-around start">
+        <div layout="column" flex="40" style="margin-left:30px">
+          <label class="textFiltre" style="font-size: 13px; padding-top: 0px; padding-bottom: 10px; text-decoration: underline;">Membre :</label>
+          <label class="textFiltre" style=" font-size: 13px;  padding-top: 5px; padding-bottom: 5px; margin-left:15px" ng-repeat="membre in g.membre">{{membre.mail}}</label>
+        </div>
+        <div layout="column" flex="40" style="margin-left:30px">
+          <label class="textFiltre" style="font-size: 13px; padding-top: 0px; padding-bottom: 10px; text-decoration: underline;">Musique :</label>
+          <label class="textFiltre" style="font-size: 13px; padding-top: 5px; padding-bottom: 5px; margin-left:15px" ng-repeat="morceau in g.morceau">{{morceau.titre}} ({{morceau.nb_likes}} likes)</label>
+        </div>
+      </div>
+    </div>
+    <h4 style="padding-top: 15px; padding-bottom: 15px; text-align:center; color: #565a5c; font-size: 18px; font-weight: bold; font-family: Circular,'Helvetica Neue',Helvetica,Arial,sans-serif;">
+      <md-button class="md-raised md-primary" ng-click="addGroupe($event)" >Ajouter un groupe</md-button>
+    </h4>
+  </md-card>
+
+  <md-card layout-padding ng-cloak class="home" flex="50" style="margin-bottom:25px" ng-if="user.statut==='Internaute'">
+    <h4 style="padding-top: 15px; padding-bottom: 15px; text-align:center; color: #565a5c; font-size: 18px; font-weight: bold; font-family: Circular,'Helvetica Neue',Helvetica,Arial,sans-serif;">
+      Les groupe en compétition
+    </h4>
+    <md-divider></md-divider>
+    <div layout="column" style="padding: 0px;" ng-repeat="g in groupeEnComp track by $index" ng-init="groupeIndex = $index+1; afficher=false">
+      <div layout="row" layout-align="center center">
+        <label flex="40" class="textFiltre">Nom groupe {{groupeIndex}}:</label>
+        <label flex="40" class="textFiltre">{{g[0].nom_groupe}}</label>
+        <!-- <md-button class="md-icon-button" aria-label="More" ng-click="addMusique($event, g.nom_groupe)">
+          <i class="material-icons" style="color: #5C6062;">&#xE03B;</i>
+          <md-tooltip md-direction="left">
+            Ajouté une musique
+          </md-tooltip>
+        </md-button> -->
+        <md-button class="md-icon-button" aria-label="More" ng-click="afficher=!afficher">
+          <i class="material-icons" style="color: #5C6062;" ng-if="!afficher">&#xE313;</i>
+          <i class="material-icons" style="color: #5C6062;" ng-if="afficher">&#xE5CE;</i>
+          <md-tooltip md-direction="left">
+            <div ng-if="!afficher">Voir les details</div>
+            <div ng-if="afficher">Cacher les details</div>
+          </md-tooltip>
+        </md-button>
+      </div>
+      <div layout="row" ng-if="afficher" layout-align="space-around start">
+        <div layout="column" flex="80" style="margin-left:30px">
+          <label class="textFiltre" style="font-size: 13px; padding-top: 0px; padding-bottom: 10px; text-decoration: underline;">Musique :</label>
+          <label class="textFiltre" layout="row" style="font-size: 13px; padding-top: 5px; padding-bottom: 5px; margin-left:15px" ng-repeat="morceau in g">
+            <div flex="60" style="margin-top: 12px; font-size: 13px; padding-top: 0px; padding-bottom: 0px;">{{morceau.titre}} ({{morceau.nb_likes}} likes)</div>
+            <md-button class="md-icon-button" aria-label="More" ng-click="musiquePlay()">
+              <i class="material-icons" style="color: #5C6062;">&#xE037;</i>
+              <md-tooltip md-direction="left">
+                <div>Play.</div>
+              </md-tooltip>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="More" ng-click="musiquePause()">
+              <i class="material-icons" style="color: #5C6062;">&#xE034;</i>
+              <md-tooltip md-direction="left">
+                <div>Pause.</div>
+              </md-tooltip>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="More" ng-click="noteMusique($event, morceau.titre, g[0].nom_groupe)">
+              <i class="material-icons" style="color: #5C6062;">&#xE242;</i>
+              <md-tooltip md-direction="left">
+                <div>Noter la musique.</div>
+              </md-tooltip>
+            </md-button>
+          </label>
+        </div>
+      </div>
+
+    </div>
+    <h4 style="padding-top: 15px; padding-bottom: 15px; text-align:center; color: #565a5c; font-size: 18px; font-weight: bold; font-family: Circular,'Helvetica Neue',Helvetica,Arial,sans-serif;">
+      <md-button class="md-raised md-primary" ng-click="statistique($event)" >Statistique</md-button>
+    </h4>
+
+  </md-card>
+</div>

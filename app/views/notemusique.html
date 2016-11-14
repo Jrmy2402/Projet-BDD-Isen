@@ -1,0 +1,157 @@
+<md-dialog aria-label="List dialog">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Noter la musique {{nomMusique}} du groupe: {{groupe}}</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="Annuler" ng-click="cancel()">
+        <i class="material-icons">&#xE14C;</i>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content layout-padding>
+    <div ng-if="dejaValider" style="text-align: center;">
+      <h5 style="font-family: 'Great Vibes', cursive; font-weight: normal; text-shadow: 0 1px 1px #CCCDCD;">Vous avez déjà voter pour cette musique.</h5>
+    </div>
+    <form name="inscriptionForm">
+      <div layout="row" layout-align="space-around center">
+        <md-input-container flex="45">
+          <label>Critère 1:</label>
+          <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.critere1.$touched && !inscriptionForm.critere1.$valid}">music_note</md-icon>
+          <md-select ng-disabled="dejaValider" ng-model="morceau.critere1" name="critere1" ng-required="true">
+            <md-optgroup label="Note critère 1">
+              <md-option ng-value="critere1.note" ng-repeat="critere1 in [{note: 1, des: 'Faible'},{note: 2, des: 'Passable'},{note: 3, des: 'Bon'},{note: 4, des: 'Très bon'}]">{{critere1.note}}: {{critere1.des}}</md-option>
+            </md-optgroup>
+          </md-select>
+          <div ng-messages="inscriptionForm.critere1.$error" ng-if="inscriptionForm.critere1.$touched && !inscriptionForm.critere1.$valid">
+            <div ng-message="required">Requis.</div>
+          </div>
+        </md-input-container>
+        <md-input-container flex="45">
+          <label>Critère 2:</label>
+          <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.critere2.$touched && !inscriptionForm.critere2.$valid}">music_note</md-icon>
+          <md-select ng-disabled="dejaValider" ng-model="morceau.critere2" name="critere2" ng-required="true">
+            <md-optgroup label="Note critère 2">
+              <md-option ng-value="critere2.note" ng-repeat="critere2 in [{note: 1, des: 'Faible'},{note: 2, des: 'Passable'},{note: 3, des: 'Bon'},{note: 4, des: 'Très bon'}]">{{critere2.note}}: {{critere2.des}}</md-option>
+            </md-optgroup>
+          </md-select>
+          <div ng-messages="inscriptionForm.critere2.$error" ng-if="inscriptionForm.critere2.$touched && !inscriptionForm.critere2.$valid">
+            <div ng-message="required">Requis.</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row" layout-align="space-around center">
+        <md-input-container flex="45">
+          <label>Critère 3:</label>
+          <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.critere3.$touched && !inscriptionForm.critere3.$valid}">music_note</md-icon>
+          <md-select ng-disabled="dejaValider" ng-model="morceau.critere3" name="critere3" ng-required="true">
+            <md-optgroup label="Note critère 3">
+              <md-option ng-value="critere3.note" ng-repeat="critere3 in [{note: 1, des: 'Faible'},{note: 2, des: 'Passable'},{note: 3, des: 'Bon'},{note: 4, des: 'Très bon'}]">{{critere3.note}}: {{critere3.des}}</md-option>
+            </md-optgroup>
+          </md-select>
+          <div ng-messages="inscriptionForm.critere3.$error" ng-if="inscriptionForm.critere3.$touched && !inscriptionForm.critere3.$valid">
+            <div ng-message="required">Requis.</div>
+          </div>
+        </md-input-container>
+        <md-input-container flex="45">
+          <label>Critère 4:</label>
+          <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.critere4.$touched && !inscriptionForm.critere4.$valid}">music_note</md-icon>
+          <md-select ng-disabled="dejaValider" ng-model="morceau.critere4" name="critere4" ng-required="true">
+            <md-optgroup label="Note critère 4">
+              <md-option ng-value="critere4.note" ng-repeat="critere4 in [{note: 1, des: 'Faible'},{note: 2, des: 'Passable'},{note: 3, des: 'Bon'},{note: 4, des: 'Très bon'}]">{{critere4.note}}: {{critere4.des}}</md-option>
+            </md-optgroup>
+          </md-select>
+          <div ng-messages="inscriptionForm.critere4.$error" ng-if="inscriptionForm.critere4.$touched && !inscriptionForm.critere4.$valid">
+            <div ng-message="required">Requis.</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row" layout-align="space-around center">
+        <md-input-container flex="45">
+          <label>Critère 5:</label>
+          <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.critere5.$touched && !inscriptionForm.critere5.$valid}">music_note</md-icon>
+          <md-select ng-disabled="dejaValider" ng-model="morceau.critere5" name="critere5" ng-required="true">
+            <md-optgroup label="Note critère 5">
+              <md-option ng-value="critere5.note" ng-repeat="critere5 in [{note: 1, des: 'Faible'},{note: 2, des: 'Passable'},{note: 3, des: 'Bon'},{note: 4, des: 'Très bon'}]">{{critere5.note}}: {{critere5.des}}</md-option>
+            </md-optgroup>
+          </md-select>
+          <div ng-messages="inscriptionForm.critere5.$error" ng-if="inscriptionForm.critere5.$touched && !inscriptionForm.critere5.$valid">
+            <div ng-message="required">Requis.</div>
+          </div>
+        </md-input-container>
+        <md-input-container flex="45">
+          <label>Critère 6:</label>
+          <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.critere6.$touched && !inscriptionForm.critere6.$valid}">music_note</md-icon>
+          <md-select ng-disabled="dejaValider" ng-model="morceau.critere6" name="critere6" ng-required="true">
+            <md-optgroup label="Note critère 6">
+              <md-option ng-value="critere6.note" ng-repeat="critere6 in [{note: 1, des: 'Faible'},{note: 2, des: 'Passable'},{note: 3, des: 'Bon'},{note: 4, des: 'Très bon'}]">{{critere6.note}}: {{critere6.des}}</md-option>
+            </md-optgroup>
+          </md-select>
+          <div ng-messages="inscriptionForm.critere6.$error" ng-if="inscriptionForm.critere6.$touched && !inscriptionForm.critere6.$valid">
+            <div ng-message="required">Requis.</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row" layout-align="space-around center">
+        <md-input-container flex="45">
+          <label>Critère 7:</label>
+          <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.critere7.$touched && !inscriptionForm.critere7.$valid}">music_note</md-icon>
+          <md-select ng-disabled="dejaValider" ng-model="morceau.critere7" name="critere7" ng-required="true">
+            <md-optgroup label="Note critère 7">
+              <md-option ng-value="critere7.note" ng-repeat="critere7 in [{note: 1, des: 'Faible'},{note: 2, des: 'Passable'},{note: 3, des: 'Bon'},{note: 4, des: 'Très bon'}]">{{critere7.note}}: {{critere7.des}}</md-option>
+            </md-optgroup>
+          </md-select>
+          <div ng-messages="inscriptionForm.critere7.$error" ng-if="inscriptionForm.critere7.$touched && !inscriptionForm.critere7.$valid">
+            <div ng-message="required">Requis.</div>
+          </div>
+        </md-input-container>
+        <md-input-container flex="45">
+          <label>Critère 8:</label>
+          <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.critere8.$touched && !inscriptionForm.critere8.$valid}">music_note</md-icon>
+          <md-select ng-disabled="dejaValider" ng-model="morceau.critere8" name="critere8" ng-required="true">
+            <md-optgroup label="Note critère 8">
+              <md-option ng-value="critere8.note" ng-repeat="critere8 in [{note: 1, des: 'Faible'},{note: 2, des: 'Passable'},{note: 3, des: 'Bon'},{note: 4, des: 'Très bon'}]">{{critere8.note}}: {{critere8.des}}</md-option>
+            </md-optgroup>
+          </md-select>
+          <div ng-messages="inscriptionForm.critere8.$error" ng-if="inscriptionForm.critere8.$touched && !inscriptionForm.critere8.$valid">
+            <div ng-message="required">Requis.</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row" layout-align="space-around center">
+        <md-input-container flex="45">
+          <label>Critère 9:</label>
+          <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.critere9.$touched && !inscriptionForm.critere9.$valid}">music_note</md-icon>
+          <md-select ng-disabled="dejaValider" ng-model="morceau.critere9" name="critere9" ng-required="true">
+            <md-optgroup label="Note critère 9">
+              <md-option ng-value="critere9.note" ng-repeat="critere9 in [{note: 1, des: 'Faible'},{note: 2, des: 'Passable'},{note: 3, des: 'Bon'},{note: 4, des: 'Très bon'}]">{{critere9.note}}: {{critere9.des}}</md-option>
+            </md-optgroup>
+          </md-select>
+          <div ng-messages="inscriptionForm.critere9.$error" ng-if="inscriptionForm.critere9.$touched && !inscriptionForm.critere9.$valid">
+            <div ng-message="required">Requis.</div>
+          </div>
+        </md-input-container>
+        <md-input-container flex="45">
+          <label>Critère 10:</label>
+          <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.critere10.$touched && !inscriptionForm.critere10.$valid}">music_note</md-icon>
+          <md-select ng-disabled="dejaValider" ng-model="morceau.critere10" name="critere10" ng-required="true">
+            <md-optgroup label="Note critère 10">
+              <md-option ng-value="critere10.note" ng-repeat="critere10 in [{note: 1, des: 'Faible'},{note: 2, des: 'Passable'},{note: 3, des: 'Bon'},{note: 4, des: 'Très bon'}]">{{critere10.note}}: {{critere10.des}}</md-option>
+            </md-optgroup>
+          </md-select>
+          <div ng-messages="inscriptionForm.critere10.$error" ng-if="inscriptionForm.critere10.$touched && !inscriptionForm.critere10.$valid">
+            <div ng-message="required">Requis.</div>
+          </div>
+        </md-input-container>
+      </div>
+      </from>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <span flex></span>
+    <md-button ng-click="cancel()" class="md-primary">
+      Annuler
+    </md-button>
+    <md-button class="md-raised md-primary" style="margin-bottom:20px;" ng-disabled="!inscriptionForm.$valid || dejaValider" ng-click="answer(morceau)">
+      Valider
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

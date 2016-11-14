@@ -1,0 +1,116 @@
+<md-card layout="column" layout-padding ng-cloak class="home" flex="40">
+  <br/>
+  <form name="inscriptionForm">
+    <md-content class="md-no-momentum md-padding">
+      <div style="text-align: center;">
+        <h2 style="font-family: 'Ma Super Fonte Regular', cursive;">Créer un compte</h2></div>
+
+      <div style="text-align: center;" ng-if="error">{{error}}</div>
+
+      <p>Sexe : <span class="radioValue">{{ user.sexe }}</span> </p>
+      <md-radio-group ng-model="user.sexe" required>
+        <md-radio-button value="Homme" class="md-primary">Homme</md-radio-button>
+        <md-radio-button value="Femme" class="md-primary">Femme</md-radio-button>
+      </md-radio-group>
+      <hr />
+      <md-input-container class="md-icon-float md-block">
+        <label>Nom</label>
+        <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.nom.$touched && !inscriptionForm.nom.$valid}">person</md-icon>
+        <input ng-model="user.nom" ng-required="true" type="text" name="nom">
+        <div ng-messages="inscriptionForm.nom.$error" ng-if="inscriptionForm.nom.$touched && !inscriptionForm.nom.$valid">
+          <div ng-message="required">Requis.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-icon-float md-block">
+        <label>Prénom</label>
+        <md-icon class="material-icons" style="color:white">person</md-icon>
+        <input ng-model="user.prenom" ng-required="true" type="text" name="prenom">
+        <div ng-messages="inscriptionForm.prenom.$error" ng-if="inscriptionForm.prenom.$touched && !inscriptionForm.prenom.$valid">
+          <div ng-message="required">Requis.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-icon-float md-block">
+        <!-- Use floating label instead of placeholder -->
+        <label>Adresse mail</label>
+        <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.email.$touched && !inscriptionForm.email.$valid}">email</md-icon>
+        <!-- <md-icon md-svg-src="images/icons/ic_person_black_24px.svg" class="name"></md-icon> -->
+        <input ng-model="user.email" ng-required="true" type="email" name="email">
+        <div ng-messages="inscriptionForm.email.$error" ng-if="inscriptionForm.email.$touched && !inscriptionForm.email.$valid">
+          <div ng-message="required">Requis.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-icon-float md-block">
+        <!-- Use floating label instead of placeholder -->
+        <label>Mot de passe</label>
+        <!-- <md-icon md-svg-src="images/icons/ic_vpn_key_black_24px.svg" class="name"></md-icon> -->
+        <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.password.$touched && !inscriptionForm.password.$valid}">vpn_key</md-icon>
+        <input ng-model="user.password" type="password" name="password" required>
+        <div ng-messages="inscriptionForm.password.$error" ng-if="inscriptionForm.password.$touched && !inscriptionForm.password.$valid">
+          <div ng-message="required">Requis.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-icon-float md-block">
+        <!-- Use floating label instead of placeholder -->
+        <label>Téléphone</label>
+        <!-- <md-icon md-svg-src="images/icons/ic_vpn_key_black_24px.svg" class="name"></md-icon> -->
+        <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.phone.$touched && !inscriptionForm.phone.$valid}">phone</md-icon>
+        <input ng-model="user.phone" type="text" name="phone" required>
+        <div ng-messages="inscriptionForm.phone.$error" ng-if="inscriptionForm.phone.$touched && !inscriptionForm.phone.$valid">
+          <div ng-message="required">Requis.</div>
+        </div>
+      </md-input-container>
+      <div layout="row" layout-align="space-around center">
+        <div flex="15">
+          <md-input-container class="md-icon-float md-block">
+            <label>N°</label>
+            <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.numrue.$touched && !inscriptionForm.numrue.$valid}">home</md-icon>
+            <input ng-model="user.numrue" type="number" name="numrue">
+          </md-input-container>
+        </div>
+        <div flex="40">
+          <md-input-container class="md-icon-float md-block">
+            <label>Rue</label>
+            <input ng-model="user.rue" type="text" name="rue" required>
+            <div ng-messages="inscriptionForm.rue.$error" ng-if="inscriptionForm.rue.$touched && !inscriptionForm.rue.$valid">
+              <div ng-message="required">Requis.</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div flex="15">
+          <md-input-container class="md-icon-float md-block">
+            <label>Code Postal</label>
+            <input ng-model="user.codepostal" type="number" name="codepostal" required>
+            <div ng-messages="inscriptionForm.codepostal.$error" ng-if="inscriptionForm.codepostal.$touched && !inscriptionForm.codepostal.$valid">
+              <div ng-message="required">Requis.</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div flex="25">
+          <md-input-container class="md-icon-float md-block">
+            <label>Ville</label>
+            <input ng-model="user.ville" type="text" name="ville" required>
+            <div ng-messages="inscriptionForm.ville.$error" ng-if="inscriptionForm.ville.$touched && !inscriptionForm.ville.$valid">
+              <div ng-message="required">Requis.</div>
+            </div>
+          </md-input-container>
+        </div>
+      </div>
+      <hr />
+      <h5>Date de naissance</h4>
+      <md-datepicker ng-model="user.birthday" md-placeholder="Date" required></md-datepicker>
+      <hr />
+      <p>Je m'inscris en tant que : <span class="radioValue">{{ user.statut }}</span> </p>
+      <md-radio-group ng-model="user.statut" required>
+        <md-radio-button value="Musicien" class="md-primary">Musicien</md-radio-button>
+        <md-radio-button value="Internaute" class="md-primary">Jury</md-radio-button>
+      </md-radio-group>
+      <hr />
+      <section layout="row" layout-sm="column" layout-align="end start" layout-wrap>
+        <md-button class="md-raised md-primary" ng-click="inscription()" ng-disabled="!inscriptionForm.$valid">Valider</md-button>
+      </section>
+    </md-content>
+    <!-- <md-content> -->
+
+    <!-- </md-content> -->
+  </form>
+</md-card>

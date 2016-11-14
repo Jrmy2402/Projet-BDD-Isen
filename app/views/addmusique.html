@@ -1,0 +1,46 @@
+<md-dialog aria-label="List dialog">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Ajouter une musique au groupe {{groupe}}</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="Annuler" ng-click="cancel()">
+        <i class="material-icons">&#xE14C;</i>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content layout-padding>
+    <form name="inscriptionForm">
+      <md-input-container class="md-icon-float md-block">
+        <label>Nom de la musique</label>
+        <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.nom.$touched && !inscriptionForm.nom.$valid}">album</md-icon>
+        <input ng-model="morceau.nom" ng-required="true" type="text" name="nom">
+        <div ng-messages="inscriptionForm.nom.$error" ng-if="inscriptionForm.nom.$touched && !inscriptionForm.nom.$valid">
+          <div ng-message="required">Requis.</div>
+        </div>
+      </md-input-container>
+      <div layout="row" layout-align="space-around center">
+        <md-input-container flex="100">
+          <label>Style :</label>
+          <md-icon class="material-icons" ng-class="{iconred: inscriptionForm.style.$touched && !inscriptionForm.style.$valid}">music_note</md-icon>
+          <md-select ng-model="morceau.style" name="style" ng-required="true">
+            <md-optgroup label="Style">
+              <md-option ng-value="style.style" ng-repeat="style in stylesMusc">{{style.style}}</md-option>
+            </md-optgroup>
+          </md-select>
+          <div ng-messages="inscriptionForm.style.$error" ng-if="inscriptionForm.style.$touched && !inscriptionForm.style.$valid">
+            <div ng-message="required">Requis.</div>
+          </div>
+        </md-input-container>
+      </div>
+      </from>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <span flex></span>
+    <md-button ng-click="cancel()" class="md-primary">
+      Annuler
+    </md-button>
+    <md-button class="md-raised md-primary" style="margin-bottom:20px;" ng-disabled="!inscriptionForm.$valid" ng-click="answer(morceau)">
+      Ajouté la musique
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>
